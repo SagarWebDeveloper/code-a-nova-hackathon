@@ -5,10 +5,10 @@ A full-stack MERN application for a hackathon registration portal. Participants 
 
 ## Live links
 
-- Frontend (Netlify): `https://<your-app>.netlify.app`
-- Backend (Render): `https://<your-api>.onrender.com/api/health`
+- Frontend (Netlify): https://code-a-nova-sagar.netlify.app
+- Backend (Render): https://code-a-nova-api.onrender.com (health: https://code-a-nova-api.onrender.com/api/health)
 - Demo video: `<link to 3-5 minute screen recording>`
-- GitHub repository: `<link>`
+- GitHub repository: https://github.com/SagarWebDeveloper/code-a-nova-hackathon
 
 ## Features
 
@@ -289,35 +289,32 @@ below.
 
 ## Screenshots
 
-Save screenshots in the `screenshots/` folder using these names:
-
-| Screen | File |
-| ------ | ---- |
-| Home page | `screenshots/home.png` |
-| Signup | `screenshots/signup.png` |
-| OTP verification | `screenshots/otp-verification.png` |
-| Login | `screenshots/login.png` |
-| Dashboard | `screenshots/dashboard.png` |
-| Registration form with team members | `screenshots/registration.png` |
-| Confirmation email | `screenshots/confirmation-email.png` |
-
-Then replace this list with the image embeds:
-
-```md
+### Home page
 ![Home page](screenshots/home.png)
+
+### Signup
 ![Signup](screenshots/signup.png)
+
+### OTP verification
 ![OTP verification](screenshots/otp-verification.png)
+
+### Login
 ![Login](screenshots/login.png)
+
+### Dashboard
 ![Dashboard](screenshots/dashboard.png)
+
+### Registration form with team members
 ![Registration form](screenshots/registration.png)
+
+### Confirmation email
 ![Confirmation email](screenshots/confirmation-email.png)
-```
 
 ## Known limitations
 
 - Remember-me is not implemented. The session lasts for the cookie's lifetime (7 days by default).
 - The registration edit screen is not in the UI. The `PUT /api/hackathon/myentry` endpoint is available.
-- Event dates, prizes, venue and social links are placeholders in `client/src/pages/Home.jsx` and `Layout.jsx`.
+- Event dates, prizes, venue and social links are placeholders in `client/src/pages/Home.jsx` and `Footer.jsx`.
 
 ## Manual test checklist
 
