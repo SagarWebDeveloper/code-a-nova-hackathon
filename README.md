@@ -259,6 +259,9 @@ Verify the sender address in Brevo before testing. SendGrid (port 2525, 100/day)
 4. `netlify.toml` redirects all routes to `/index.html`, so refreshing a React Router page does not return 404.
 5. After the first deploy, update `CLIENT_URL` on Render to the Netlify URL and redeploy the backend.
 
+The live site was deployed with the Netlify CLI (`netlify deploy --prod --dir=client/dist`). Link the GitHub repository in
+Netlify if you want automatic deploys on every push.
+
 Cookies: in production the cookie uses `SameSite=None; Secure`, because the frontend and API are on different domains.
 
 ## Common issues
@@ -273,6 +276,7 @@ Cookies: in production the cookie uses `SameSite=None; Secure`, because the fron
 | SMTP timeout on Render | Free hosting blocks ports 25/465/587. Use `smtp-relay.brevo.com` on port `2525` or a Render paid instance |
 | Brevo `525 Unauthorized IP address` | Disable IP blocking for SMTP keys, or authorize Render's outbound IP ranges in Brevo > Security > Authorized IPs |
 | Netlify 404 on refresh | Make sure the root `netlify.toml` is committed; it redirects all routes to `index.html` |
+| First request after idle is slow | Render free web services spin down after 15 minutes; the first request can take 30-60 seconds |
 | OTP email in spam | Use a dedicated sender account and ask testers to check the spam folder |
 
 ## Tests
