@@ -38,7 +38,7 @@ A full-stack MERN application for a hackathon registration portal. Participants 
 code-a-nova-hackathon/
 ├── client/                 React + Vite app
 │   └── src/
-│       ├── components/     Layout, Navbar, ProtectedRoute, FormField, Spinner
+│       ├── components/     Layout, Navbar, Footer, ProtectedRoute, FormField, Spinner
 │       ├── context/        AuthContext (session state from /api/user/me)
 │       ├── hooks/          useCountdown (OTP resend timer)
 │       ├── pages/          Home, Signup, VerifyOtp, Login, Dashboard, Register, RegistrationSuccess, Contact, NotFound
@@ -289,13 +289,29 @@ below.
 
 ## Screenshots
 
-Add screenshots to a `screenshots/` folder and link them here:
+Save screenshots in the `screenshots/` folder using these names:
 
-- Home page
-- Signup and OTP verification
-- Dashboard
-- Registration form with team members
-- Confirmation email
+| Screen | File |
+| ------ | ---- |
+| Home page | `screenshots/home.png` |
+| Signup | `screenshots/signup.png` |
+| OTP verification | `screenshots/otp-verification.png` |
+| Login | `screenshots/login.png` |
+| Dashboard | `screenshots/dashboard.png` |
+| Registration form with team members | `screenshots/registration.png` |
+| Confirmation email | `screenshots/confirmation-email.png` |
+
+Then replace this list with the image embeds:
+
+```md
+![Home page](screenshots/home.png)
+![Signup](screenshots/signup.png)
+![OTP verification](screenshots/otp-verification.png)
+![Login](screenshots/login.png)
+![Dashboard](screenshots/dashboard.png)
+![Registration form](screenshots/registration.png)
+![Confirmation email](screenshots/confirmation-email.png)
+```
 
 ## Known limitations
 

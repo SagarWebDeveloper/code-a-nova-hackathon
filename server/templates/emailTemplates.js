@@ -54,6 +54,7 @@ export const registrationEmailTemplate = (registration) => {
     <p style="margin:0 0 16px;">Your Code-a-Nova Hackathon registration has been submitted successfully.</p>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
       ${row('Registration ID', registration.registrationId)}
+      ${row('Event', 'Code-a-Nova Hackathon')}
       ${row('Participant', registration.fullName)}
       ${row('Project name', registration.projectName)}
       ${row('Domain / track', registration.domain)}
