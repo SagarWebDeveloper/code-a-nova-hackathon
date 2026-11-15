@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
 const SOCIAL_LINKS = [
-  { label: 'GitHub', href: '#' },
-  { label: 'LinkedIn', href: '#' },
-  { label: 'Instagram', href: '#' },
+  { label: 'GitHub', href: 'https://github.com/SagarWebDeveloper' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sagar-web-dev/' },
+  { label: 'Portfolio', href: 'https://sagartry.netlify.app/' },
 ];
 
 export default function Footer() {
@@ -29,7 +29,14 @@ export default function Footer() {
           )}
           <div className="mt-4 flex gap-4">
             {SOCIAL_LINKS.map((s) => (
-              <a key={s.label} href={s.href} aria-label={s.label} className="hover:text-white">
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={s.label}
+                className="hover:text-white"
+              >
                 {s.label}
               </a>
             ))}
@@ -37,7 +44,16 @@ export default function Footer() {
         </div>
       </div>
       <p className="mt-10 text-center text-xs text-slate-500">
-        © {new Date().getFullYear()} Code-A-Nova. All rights reserved.
+        © {new Date().getFullYear()} Code-A-Nova. All rights reserved. Built by{' '}
+        <a
+          href="https://github.com/SagarWebDeveloper"
+          target="_blank"
+          rel="noreferrer"
+          className="hover:text-white"
+        >
+          Sagar Rathor
+        </a>
+        .
       </p>
     </footer>
   );

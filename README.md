@@ -1,7 +1,15 @@
 # Code-A-Nova Hackathon Registration Portal
 
+[![Live Demo](https://img.shields.io/badge/Live-Netlify-00C7B7?logo=netlify&logoColor=white)](https://code-a-nova-sagar.netlify.app)
+[![API](https://img.shields.io/badge/API-Render-46E3B7?logo=render&logoColor=white)](https://code-a-nova-api.onrender.com/api/health)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Sagar_Rathor-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sagar-web-dev/)
+[![GitHub](https://img.shields.io/badge/GitHub-SagarWebDeveloper-181717?logo=github&logoColor=white)](https://github.com/SagarWebDeveloper)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](#)
+
 A full-stack MERN application for a hackathon registration portal. Participants sign up, verify their email with a
 6-digit OTP, log in to a personal dashboard, register a team for the hackathon, and receive a confirmation email.
+
+Built by [Sagar Rathor](https://github.com/SagarWebDeveloper) — Full Stack Developer.
 
 ## Live links
 
@@ -318,7 +326,7 @@ below.
 
 - Remember-me is not implemented. The session lasts for the cookie's lifetime (7 days by default).
 - The registration edit screen is not in the UI. The `PUT /api/hackathon/myentry` endpoint is available.
-- Event dates, prizes, venue and social links are placeholders in `client/src/pages/Home.jsx` and `Footer.jsx`.
+- Event dates, prizes and venue are placeholders in `client/src/pages/Home.jsx`.
 
 ## Manual test checklist
 
@@ -332,3 +340,12 @@ below.
 - [ ] A second registration attempt is blocked
 - [ ] Delete removes the registration
 - [ ] Logout clears the session
+
+## Author
+
+**Sagar Rathor** — Full Stack Developer
+
+- GitHub: https://github.com/SagarWebDeveloper
+- LinkedIn: https://www.linkedin.com/in/sagar-web-dev/
+- Portfolio: https://sagartry.netlify.app/
+- Contact: use the contact form on the live site (messages go to the project inbox)

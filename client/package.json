@@ -2,6 +2,9 @@
   "name": "code-a-nova-client",
   "private": true,
   "version": "1.0.0",
+  "description": "React + Vite frontend for the Code-A-Nova Hackathon registration portal.",
+  "author": "Sagar Rathor (https://github.com/SagarWebDeveloper)",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
