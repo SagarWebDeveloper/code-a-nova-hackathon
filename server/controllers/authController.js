@@ -86,10 +86,13 @@ export const verifyOtp = asyncHandler(async (req, res) => {
     throw new AppError(`Incorrect code. ${left} attempt(s) left.`, 400);
   }
 
-  // One-time use: mark verified and remove the stored OTP.
+  // One-time use: mark verified and remove all stored OTP data.
   await User.updateOne(
     { _id: user._id },
-    { $set: { isVerified: true, otpAttempts: 0 }, $unset: { otpHash: 1, otpExpiresAt: 1 } }
+    {
+      $set: { isVerified: true, otpAttempts: 0 },
+      $unset: { otpHash: 1, otpExpiresAt: 1, otpLastSentAt: 1 },
+    }
   );
 
   res.json({ success: true, message: 'Email verified. You can now log in.' });

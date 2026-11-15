@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.jsx';
@@ -10,7 +10,7 @@ import FormField from '../components/FormField.jsx';
 import Spinner from '../components/Spinner.jsx';
 
 export default function Login() {
-  const { login } = useAuth();
+  const { login, user, loading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [showPassword, setShowPassword] = useState(false);
@@ -26,6 +26,9 @@ export default function Login() {
   useEffect(() => {
     if (location.state?.verified) toast.success('Email verified. Please log in.');
   }, [location.state]);
+
+  // Already logged in: skip the form.
+  if (!loading && user) return <Navigate to={redirectTo} replace />;
 
   const onSubmit = async (values) => {
     try {

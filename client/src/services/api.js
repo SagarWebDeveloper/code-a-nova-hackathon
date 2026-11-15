@@ -10,6 +10,19 @@ const api = axios.create({
 export const getErrorMessage = (err) =>
   err.response?.data?.message || 'Something went wrong. Please try again.';
 
+// If the session expires while the app is open, tell AuthContext so protected pages redirect to login.
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const status = error.response?.status;
+    const url = error.config?.url || '';
+    if (status === 401 && !url.startsWith('/auth/')) {
+      window.dispatchEvent(new Event('auth:unauthorized'));
+    }
+    return Promise.reject(error);
+  }
+);
+
 const unwrap = (request) => request.then((res) => res.data);
 
 export const authApi = {

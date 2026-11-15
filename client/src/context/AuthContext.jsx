@@ -16,6 +16,13 @@ export function AuthProvider({ children }) {
       .finally(() => setLoading(false));
   }, []);
 
+  // The axios interceptor fires this when an authenticated request returns 401.
+  useEffect(() => {
+    const handleUnauthorized = () => setUser(null);
+    window.addEventListener('auth:unauthorized', handleUnauthorized);
+    return () => window.removeEventListener('auth:unauthorized', handleUnauthorized);
+  }, []);
+
   const login = useCallback(async (email, password) => {
     const data = await authApi.login({ email, password });
     setUser(data.user);

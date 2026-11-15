@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Eye, EyeOff } from 'lucide-react';
+import { useAuth } from '../context/AuthContext.jsx';
 import { authApi, getErrorMessage } from '../services/api.js';
 import { fullNameRules, emailRules, passwordRules, getPasswordStrength } from '../utils/validators.js';
 import FormField from '../components/FormField.jsx';
@@ -12,6 +13,7 @@ const STRENGTH_LABELS = ['Too weak', 'Weak', 'Fair', 'Good', 'Strong'];
 
 export default function Signup() {
   const navigate = useNavigate();
+  const { user, loading } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const {
     register,
@@ -22,6 +24,9 @@ export default function Signup() {
 
   const password = watch('password');
   const strength = getPasswordStrength(password);
+
+  // Already logged in: no need to show the signup form.
+  if (!loading && user) return <Navigate to="/dashboard" replace />;
 
   const onSubmit = async (values) => {
     const email = values.email.trim();

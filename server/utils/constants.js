@@ -23,6 +23,6 @@ export const COLLEGES = [
 export const COURSES = ['B.Tech', 'M.Tech', 'BCA', 'MCA', 'BSc', 'MSc', 'Diploma', 'Other'];
 export const BRANCHES = ['CSE', 'IT', 'ECE', 'EEE', 'ME', 'CE', 'AI/ML', 'Other'];
 export const YEARS_OF_STUDY = ['1st Year', '2nd Year', '3rd Year', '4th Year'];
-export const DOMAINS = ['AI/ML', 'Web Development', 'IoT', 'Cyber Security', 'Blockchain', 'Other'];
+export const DOMAINS = ['AI/ML', 'Web Development', 'IoT', 'Cyber Security', 'Blockchain', 'Open Innovation', 'Other'];
 export const TEAM_SIZE_MIN = 1;
 export const TEAM_SIZE_MAX = 5;

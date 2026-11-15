@@ -1,35 +1,41 @@
-import { useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Code2, Menu, X } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext.jsx';
 
 const navLinkClass = ({ isActive }) =>
-  `text-sm transition hover:text-white ${isActive ? 'text-white' : 'text-slate-400'}`;
+  `text-sm transition hover:text-white ${isActive ? 'font-semibold text-white' : 'text-slate-400'}`;
 
 export default function Navbar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [open, setOpen] = useState(false);
+
+  // Close the mobile menu whenever the route changes.
+  useEffect(() => setOpen(false), [location.pathname, location.hash]);
 
   const handleLogout = async () => {
     await logout();
     toast.success('Logged out');
-    setOpen(false);
     navigate('/');
   };
 
   const links = (
     <>
-      <a href="/#about" className="text-sm text-slate-400 transition hover:text-white" onClick={() => setOpen(false)}>
+      <NavLink to="/" end className={navLinkClass}>
+        Home
+      </NavLink>
+      <Link to="/#about" className="text-sm text-slate-400 transition hover:text-white">
         About
-      </a>
-      <NavLink to="/contact" className={navLinkClass} onClick={() => setOpen(false)}>
+      </Link>
+      <NavLink to="/contact" className={navLinkClass}>
         Contact
       </NavLink>
       {user ? (
         <>
-          <NavLink to="/dashboard" className={navLinkClass} onClick={() => setOpen(false)}>
+          <NavLink to="/dashboard" className={navLinkClass}>
             Dashboard
           </NavLink>
           <button type="button" onClick={handleLogout} className="text-left text-sm text-slate-400 transition hover:text-white">
@@ -38,10 +44,10 @@ export default function Navbar() {
         </>
       ) : (
         <>
-          <NavLink to="/login" className={navLinkClass} onClick={() => setOpen(false)}>
+          <NavLink to="/login" className={navLinkClass}>
             Login
           </NavLink>
-          <Link to="/signup" className="btn-primary !px-4 !py-2" onClick={() => setOpen(false)}>
+          <Link to="/signup" className="btn-primary !px-4 !py-2">
             Signup
           </Link>
         </>
@@ -54,14 +60,14 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4" aria-label="Main navigation">
         <Link to="/" className="flex items-center gap-2 font-bold text-white">
           <Code2 className="h-6 w-6 text-brand-cyan" aria-hidden="true" />
-          Code-A-Nova
+          Code-a-Nova
         </Link>
 
         <div className="hidden items-center gap-6 md:flex">{links}</div>
 
         <button
           type="button"
-          className="text-white md:hidden"
+          className="rounded-lg p-2 text-white transition hover:bg-white/5 md:hidden"
           onClick={() => setOpen((o) => !o)}
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}

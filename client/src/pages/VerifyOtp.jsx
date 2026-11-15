@@ -89,6 +89,8 @@ export default function VerifyOtp() {
     try {
       const res = await authApi.resendOtp({ email });
       toast.success(res.message);
+      setDigits(Array(LENGTH).fill(''));
+      inputs.current[0]?.focus();
       start();
     } catch (err) {
       const retry = err.response?.data?.retryAfterSeconds;
@@ -147,6 +149,8 @@ export default function VerifyOtp() {
 
         <p className="mt-6 text-xs text-slate-500">
           Wrong address? <Link to="/signup" className="underline">Sign up again</Link>
+          {' · '}
+          <Link to="/login" className="underline">Back to login</Link>
         </p>
       </div>
     </section>

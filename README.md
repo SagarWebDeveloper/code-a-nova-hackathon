@@ -1,4 +1,4 @@
-# Code-A-Nova Hackathon Registration Portal
+# Code-a-Nova Hackathon Registration Portal
 
 [![Live Demo](https://img.shields.io/badge/Live-Netlify-00C7B7?logo=netlify&logoColor=white)](https://code-a-nova-sagar.netlify.app)
 [![API](https://img.shields.io/badge/API-Render-46E3B7?logo=render&logoColor=white)](https://code-a-nova-api.onrender.com/api/health)
@@ -15,7 +15,7 @@ Built by [Sagar Rathor](https://github.com/SagarWebDeveloper) — Full Stack Dev
 
 - Frontend (Netlify): https://code-a-nova-sagar.netlify.app
 - Backend (Render): https://code-a-nova-api.onrender.com (health: https://code-a-nova-api.onrender.com/api/health)
-- Demo video: `<link to 3-5 minute screen recording>`
+- Demo video: https://drive.google.com/file/d/1cWLSKifD3yCFJ71gUe8e4olJ_3gFGlSE/view
 - GitHub repository: https://github.com/SagarWebDeveloper/code-a-nova-hackathon
 
 ## Features
@@ -28,8 +28,31 @@ Built by [Sagar Rathor](https://github.com/SagarWebDeveloper) — Full Stack Dev
 - Duplicate team member and self-addition checks, one registration per user
 - Registration confirmation email with registration ID and team details
 - Owner-only delete of a registration
-- Contact form that emails the Code-A-Nova project inbox
+- Contact form that emails the Code-a-Nova project inbox
+- Rate limiting, input validation, sanitised JSON bodies and a central error handler
+- Session-expiry detection, accessible forms, skip link and a responsive layout
 - Responsive dark UI, custom 404 page, health check endpoint
+
+## Task coverage
+
+| Requirement | Where it is implemented |
+| ----------- | ----------------------- |
+| Home, Navbar, Footer | `client/src/pages/Home.jsx`, `components/Navbar.jsx`, `components/Footer.jsx` |
+| Signup, OTP verify and resend | `pages/Signup.jsx`, `pages/VerifyOtp.jsx`, `controllers/authController.js` |
+| Login with JWT | `pages/Login.jsx`, `controllers/authController.js`, `middleware/auth.js` |
+| Protected dashboard | `pages/Dashboard.jsx`, `components/ProtectedRoute.jsx` |
+| Registration form with dynamic team members | `pages/Register.jsx`, `controllers/hackathonController.js` |
+| Contact page | `pages/Contact.jsx`, `controllers/contactController.js` |
+| Nodemailer OTP and confirmation emails | `services/emailService.js`, `templates/emailTemplates.js` |
+| CRUD endpoints | `server/routes/index.js` (see the API reference below) |
+| Responsive UI | Tailwind CSS, mobile hamburger menu, responsive grids |
+
+### Route protection
+
+- Public pages: Home, Contact, Signup, Verify OTP, Login. Verify OTP and Contact must stay public so new users can
+  verify their account and visitors can reach the team.
+- JWT-protected pages and APIs: Dashboard, Register, Registration success, `/api/user/*`, `/api/hackathon/register`,
+  `/api/hackathon/myentry` and `DELETE /api/hackathon/:id`.
 
 ## Tech stack
 
@@ -46,12 +69,12 @@ Built by [Sagar Rathor](https://github.com/SagarWebDeveloper) — Full Stack Dev
 code-a-nova-hackathon/
 ├── client/                 React + Vite app
 │   └── src/
-│       ├── components/     Layout, Navbar, Footer, ProtectedRoute, FormField, Spinner
+│       ├── components/     Layout, Navbar, Footer, ProtectedRoute, ScrollToTop, FormField, Spinner
 │       ├── context/        AuthContext (session state from /api/user/me)
 │       ├── hooks/          useCountdown (OTP resend timer)
 │       ├── pages/          Home, Signup, VerifyOtp, Login, Dashboard, Register, RegistrationSuccess, Contact, NotFound
 │       ├── services/       api.js (Axios instance and API helpers)
-│       └── utils/          validators.js (shared client rules)
+│       └── utils/          validators.js (client rules), event.js (event content)
 └── server/                 Express API
     ├── config/             db.js (MongoDB connection)
     ├── controllers/        auth, user, hackathon, contact
@@ -95,6 +118,12 @@ database is MongoDB Atlas.
 
 5. Open `http://localhost:5173`.
 
+### Event content
+
+Landing-page dates, prizes, tracks and mode live in `client/src/utils/event.js`. Update that file with your real event
+details before publishing. The dropdown values used by the registration form live in `server/utils/constants.js`, so the
+API and the form always agree.
+
 ## Environment variables
 
 ### server/.env
@@ -120,7 +149,7 @@ database is MongoDB Atlas.
 | Variable | Purpose |
 | -------- | ------- |
 | `VITE_API_URL` | Backend base URL including `/api` |
-| `VITE_CONTACT_EMAIL` | Public contact email shown on the site |
+| `VITE_CONTACT_EMAIL` | Public contact email shown in the footer and contact page. If empty, the UI links to the contact form instead |
 
 ## API reference
 
@@ -326,7 +355,9 @@ below.
 
 - Remember-me is not implemented. The session lasts for the cookie's lifetime (7 days by default).
 - The registration edit screen is not in the UI. The `PUT /api/hackathon/myentry` endpoint is available.
-- Event dates, prizes and venue are placeholders in `client/src/pages/Home.jsx`.
+- Event dates and prizes in `client/src/utils/event.js` are sample values. Replace them with your real event details.
+- Team size includes the logged-in participant, so a team of 3 renders two additional member blocks (N-1). The server
+  enforces the same rule.
 
 ## Manual test checklist
 
